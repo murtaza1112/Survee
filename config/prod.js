@@ -1,9 +1,7 @@
-//dont commit this
+//do commit this
 module.exports = {
-  googleClientID:
-    "1081971727626-eoa3vpt1kbbi6nnqdrpj603848k2n23b.apps.googleusercontent.com",
-  googleClientSecret: "PfT_PNQ7NnoIJkK2dY_weqwi",
-  mongoURI:
-    "mongodb+srv://testing:testing123@cluster0-afjnu.mongodb.net/test?retryWrites=true&w=majority",
-  cookieKey: "murtaza12314124"
+  googleClientID: process.env.GOOGLE_CLIENT_ID,
+  googleClientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  mongoURI: process.env.MONGO_URI,
+  cookieKey: process.env.COOKIE_KEY
 };
