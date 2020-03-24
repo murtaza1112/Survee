@@ -25,7 +25,14 @@ passport.use(
     {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
-      callbackURL: "/auth/google/callback"
+      callbackURL: "/auth/google/callback",
+      proxy: true
+      //error:http used instead of https , causing errors
+      //the proxy=true option allows servers to bypass proxies which are aimed
+      //at directing traffic ,heroku has its own proxy
+      //be default proxy=false if not complemented wont run during runtime
+      //another solution is passing the entire url instead of a relative one using
+      //env variables
     },
     (accessToken, refreshToken, profile, done) => {
       //whenever the callback is called the flow of program redirects here
