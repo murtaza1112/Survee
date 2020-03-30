@@ -34,19 +34,19 @@ passport.use(
       //another solution is passing the entire url instead of a relative one using
       //env variables
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       //whenever the callback is called the flow of program redirects here
       console.log("profile:", profile);
-      User.findOne({ googleId: profile.id }).then(existingUser => {
-        if (existingUser) {
-          //no error
-          done(null, existingUser);
-        } else {
-          new User({ googleId: profile.id })
-            .save()
-            .then(user => done(null, user));
-        }
-      });
+      const existingUser = await User.findOne({ googleId: profile.id });
+
+      if (existingUser) {
+        //no error
+        return done(null, existingUser);
+      }
+
+      const user = new User({ googleId: profile.id });
+      await user.save();
+      done(null, user);
     }
   )
 );

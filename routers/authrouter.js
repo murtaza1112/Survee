@@ -22,13 +22,18 @@ module.exports = app => {
     "/auth/google/callback",
     passport.authenticate("google"),
     (req, res) => {
-      res.send("Hello world");
+      console.log("Redirect called. ");
+      const url =
+        process.env.NODE_ENV === "production"
+          ? "/surveys"
+          : "http://localhost:3000/surveys";
+      res.redirect(url);
     }
   );
   //kills the id in the cookie
   app.get("/api/logout", (req, res) => {
     req.logout();
-    res.send(req.user);
+    res.redirect("/");
   });
 
   app.get("/api/current", (req, res) => {
