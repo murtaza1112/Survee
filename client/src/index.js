@@ -3,11 +3,12 @@ import ReactDOM from "react-dom";
 import reduxThunk from "redux-thunk";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
-
 import reducers from "./reducers";
 import App from "./components/App";
 //could have imported this anywhere in the project wouldnt have mattered.
 import "materialize-css/dist/css/materialize.min.css";
+import axios from "axios";
+window.axios = axios; //allow use of axios in front end termunal
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 ReactDOM.render(

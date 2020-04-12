@@ -4,10 +4,11 @@ const authRoutes = require("./routers/authrouter");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const bodyParser = require("body-parser");
-
 const cookieSession = require("cookie-session");
 const billingRoutes = require("./routers/billingRoutes");
+const surveyRoutes = require("./routers/surveyRoutes");
 require("./models/User");
+require("./models/Survey");
 require("./services/passport");
 
 const PORT = process.env.PORT || 5000;
@@ -33,13 +34,14 @@ app.use(passport.session());
 //end of middlewares
 authRoutes(app);
 billingRoutes(app);
+surveyRoutes(app);
 //another alternative to about code is
 //require("./routers/authrouter")(app);
 //the require function returns function to which the app object is passed
 
 if (process.env.NODE_ENV === "production") {
   //only in prod version
-  //if route for a particular route not recognized on server side 
+  //if route for a particular route not recognized on server side
   //then check in client side
   app.use(express.static("client/build"));
   //Express will serve up the index.html file
