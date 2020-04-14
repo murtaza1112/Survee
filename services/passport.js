@@ -16,7 +16,7 @@ passport.serializeUser((user, done) => {
 //for logging out
 //the first arg is same as the one provided for the cookie
 passport.deserializeUser((id, done) => {
-  User.findById(id).then(user => done(null, user));
+  User.findById(id).then((user) => done(null, user));
 });
 
 //instrtucts the pasport lib to use google strategy by passing a new instance of it
@@ -26,7 +26,7 @@ passport.use(
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
       callbackURL: "/auth/google/callback",
-      proxy: true
+      proxy: true,
       //error:http used instead of https , causing errors
       //the proxy=true option allows servers to bypass proxies which are aimed
       //at directing traffic ,heroku has its own proxy
