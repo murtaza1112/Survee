@@ -11,7 +11,6 @@ class SurveyField extends React.Component {
     // user even interacts with the form
     return (
       <div>
-        {/* asssign all values to input tag */}
         <label>{this.props.label}</label>
         <input {...input} style={{ marginBottom: "5px" }} />
         <div className="red-text" style={{ marginBottom: "20px" }}>

@@ -26,7 +26,7 @@ class Header extends React.Component {
           </li>,
           <li key="3">
             <a href="/api/logout">LogOut</a>
-          </li>
+          </li>,
         ];
     }
   }
@@ -49,10 +49,8 @@ class Header extends React.Component {
     );
   }
 }
-//as you only want to know state of authentication only pass the stateToProps function
-//no need to call reducer and action creator
-const mapStateToProps = state => {
-  // as value returned by authReducer is assigned to auth prop
+
+const mapStateToProps = (state) => {
   return { auth: state.auth };
 };
 export default connect(mapStateToProps)(Header);
