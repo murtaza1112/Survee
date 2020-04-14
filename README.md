@@ -75,4 +75,10 @@ Values for each of the above key value pairs :
 4.Sendgrid key will be avaiable by creating an account on sendgrid .(Have to provide proper details for new users such as project
 name,purpose of project creation etc)
 
+Note - For testing , to add credits in account use dummy values for credit card info for the credit card number enter ,
 
+  4242 4242 4242 4242
+  
+ To send mail to recipients , add mails in succession using commas.
+  
+ ex - murtaza1112@hotmail.com , testingapp@gmail.com , punsagarv@hotmail.com
