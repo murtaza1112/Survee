@@ -9,16 +9,20 @@ heroku url : https://murtaza-surveyapp.herokuapp.com/
 Prerequistes:
 
 git:
+
         For linux: sudo apt install git
         To verify: git --version
         
 node:   https://nodejs.org/en/download/
 
 To check if installed run the following in terminal : 
+
         node --version
+        
 if already installed will return a number
 
 npm:
+
         npm install -g npm@latest
 
 To build locally:
