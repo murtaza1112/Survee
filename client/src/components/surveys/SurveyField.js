@@ -1,19 +1,21 @@
 import React from "react";
-
+import { Form } from "react-bootstrap";
 class SurveyField extends React.Component {
   render() {
     const input = this.props.input;
     const meta = this.props.meta;
     const { error, touched } = meta;
-
+    const placeholder =
+      input.name.charAt(0).toUpperCase() + input.name.slice(1);
+    console.log(error);
     return (
-      <div>
-        <label>{this.props.label}</label>
-        <input {...input} style={{ marginBottom: "5px" }} />
-        <div className="red-text" style={{ marginBottom: "20px" }}>
+      <Form.Group>
+        <Form.Label>{this.props.label}</Form.Label>
+        <Form.Control placeholder={placeholder} />
+        <Form.Text className="text-muted" style={{ color: "red" }}>
           {touched && error}
-        </div>
-      </div>
+        </Form.Text>
+      </Form.Group>
     );
   }
 }

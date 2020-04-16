@@ -2,10 +2,9 @@ import React from "react";
 import { reduxForm, Field } from "redux-form";
 import surveyField from "./SurveyField";
 import _ from "lodash";
-import { Link } from "react-router-dom";
 import validateEmails from "../../utils/validateEmail";
 import formFields from "./formFields";
-
+import { Form, Button } from "react-bootstrap";
 class surveyForm extends React.Component {
   renderFields() {
     return _.map(formFields, ({ label, name }) => {
@@ -22,18 +21,23 @@ class surveyForm extends React.Component {
   }
   render() {
     return (
-      <form
+      <Form
         onSubmit={this.props.handleSubmit(() => this.props.onSurveySubmit())}
+        style={{ paddingTop: "20px" }}
       >
         {this.renderFields()}
-        <Link to="/surveys" className="red btn-flat wite-text">
+
+        <Button variant="outline-danger" href="/surveys">
           Cancel
-        </Link>
-        <button type="submit" className="teal btn-flat right wite-text">
+        </Button>
+        <Button
+          type="submit"
+          variant="outline-secondary"
+          style={{ float: "right" }}
+        >
           Next
-          <i className="material-icons right">done</i>
-        </button>
-      </form>
+        </Button>
+      </Form>
     );
   }
 }
@@ -42,7 +46,7 @@ function validate(values) {
   const errors = {};
 
   errors.recipients = validateEmails(values.recipients || " ");
-
+  console.log(errors);
   _.each(formFields, ({ name }) => {
     if (!values[name]) errors[name] = "Please provide a value";
   });

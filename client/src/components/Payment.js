@@ -2,6 +2,7 @@ import React from "react";
 import StrikeCheckout from "react-stripe-checkout";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+import { Button } from "react-bootstrap";
 class Payments extends React.Component {
   render() {
     return (
@@ -13,7 +14,9 @@ class Payments extends React.Component {
           token={(token) => this.props.handleToken(token)}
           stripeKey={process.env.REACT_APP_STRIPE_KEY}
         >
-          <button className="btn">ADD CREDITS</button>
+          <Button variant="outline-dark" style={{ margin: "9px" }}>
+            ADD CREDITS
+          </Button>
         </StrikeCheckout>
       </div>
     );
