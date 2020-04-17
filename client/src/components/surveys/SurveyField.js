@@ -7,13 +7,13 @@ class SurveyField extends React.Component {
     const { error, touched } = meta;
     const placeholder =
       input.name.charAt(0).toUpperCase() + input.name.slice(1);
-    console.log(error);
+
     return (
       <Form.Group>
         <Form.Label>{this.props.label}</Form.Label>
-        <Form.Control placeholder={placeholder} />
-        <Form.Text className="text-muted" style={{ color: "red" }}>
-          {touched && error}
+        <Form.Control {...input} placeholder={placeholder} />
+        <Form.Text className="text-muted">
+          <p style={{ color: "red" }}>{touched && error}</p>
         </Form.Text>
       </Form.Group>
     );

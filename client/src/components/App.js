@@ -9,6 +9,7 @@ import Dashboard from "./Dashboard";
 import surveyNew from "./surveys/SurveyNew";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Iconbar from "./Iconbar";
 import { Container } from "react-bootstrap";
 class App extends React.Component {
   componentDidMount() {
@@ -17,19 +18,19 @@ class App extends React.Component {
   render() {
     return (
       <div className="site-container">
+        <Iconbar />
         <BrowserRouter>
-          <Container>
-            <div className="site-header">
-              <Route path="/" component={Header} />
-            </div>
-            <div className="container site-content">
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/surveys" component={Dashboard} />
-              <Route exact path="/surveys/new" component={surveyNew} />
-            </div>
-          </Container>
+          <div className="site-header">
+            <Route path="/" component={Header} />
+          </div>
+          <div className="container site-content">
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/surveys" component={Dashboard} />
+            <Route exact path="/surveys/new" component={surveyNew} />
+          </div>
+
           <div className="site-footer">
-            <Route path="/" component={Footer} />
+            <Footer />
           </div>
         </BrowserRouter>
       </div>
