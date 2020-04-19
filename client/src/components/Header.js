@@ -80,17 +80,18 @@ class Header extends React.Component {
 
       default:
         return [
-          <Nav>
+          <Nav key="1">
             <Payment />
           </Nav>,
           <Nav.Link
             eventKey={2}
-            href="/api/logou"
+            href="/#"
             style={{ paddingTop: "14px" }}
+            key="2"
           >
             Credits: {this.props.auth.credits}
           </Nav.Link>,
-          <Nav.Link eventKey={2} href="/api/logout">
+          <Nav.Link eventKey={2} href="/api/logout" key="3">
             <Button variant="outline-dark">Logout</Button>
           </Nav.Link>,
         ];

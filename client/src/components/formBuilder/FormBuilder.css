@@ -1,0 +1,39 @@
+body {
+  background-image: linear-gradient(#fdfcfb, #e2d1c3);
+}
+h1 {
+  padding: 20px;
+}
+
+.form-rendered #build-wrap {
+  display: none;
+}
+
+.render-wrap {
+  display: none;
+  background-color: white;
+  border-radius: 25px;
+  padding: 15px;
+}
+
+.form-rendered .render-wrap {
+  display: block;
+}
+
+#edit-form {
+  display: none;
+  float: right;
+}
+
+.form-rendered #edit-form {
+  display: block;
+}
+
+#save-form {
+  display: none;
+  float: left;
+}
+
+.form-rendered #save-form {
+  display: block;
+}

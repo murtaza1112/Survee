@@ -11,6 +11,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Iconbar from "./Iconbar";
 import { Container } from "react-bootstrap";
+import FormBuilder from "./formBuilder/FormBuilder";
+
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -27,6 +29,7 @@ class App extends React.Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={Dashboard} />
             <Route exact path="/surveys/new" component={surveyNew} />
+            <Route exact path="/forms/create" component={FormBuilder} />
           </div>
 
           <div className="site-footer">

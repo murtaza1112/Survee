@@ -14,6 +14,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
+    "formBuilder": "^3.4.2",
     "http-proxy-middleware": "^1.0.3",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
