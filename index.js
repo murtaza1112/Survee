@@ -14,7 +14,7 @@ require("./services/passport");
 const PORT = process.env.PORT || 5000;
 mongoose.connect(keys.mongoURI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 const app = express();
@@ -26,7 +26,7 @@ app.use(bodyParser.json());
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000, //token expires after 30 days
-    keys: [keys.cookieKey]
+    keys: [keys.cookieKey],
   })
 );
 app.use(passport.initialize());
@@ -35,6 +35,8 @@ app.use(passport.session());
 authRoutes(app);
 billingRoutes(app);
 surveyRoutes(app);
+require("./routers/formRoutes")(app);
+
 //another alternative to about code is
 //require("./routers/authrouter")(app);
 //the require function returns function to which the app object is passed

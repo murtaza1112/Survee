@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const formDraftSchema = require("./FormDraft");
 
 const UserSchema = new Schema({
   googleId: String,
   credits: {
     type: Number,
-    default: 0
-  }
+    default: 0,
+  },
+  formDrafts: [formDraftSchema],
 });
 //dont add a list of surveys to each user as
 //each collection gets a 4mb max size to hold its records

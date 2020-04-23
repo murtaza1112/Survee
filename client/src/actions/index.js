@@ -25,3 +25,9 @@ export const fetchSurveys = () => async (dispatch) => {
 
   dispatch({ type: FETCH_SURVEYS, payload: res.data });
 };
+
+export const submitDraft = (draft) => async (dispatch) => {
+  const res = await axios.post("/api/forms/submit", draft);
+  console.log(res);
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
