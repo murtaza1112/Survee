@@ -4,6 +4,7 @@ An application to send surveys to different email ids by allowing user to provid
 Implemented using react /redux.
 Tech Stack:MERN with Redux for state management.
 
+To view formBuilder part : naviagte to /forms/create
 heroku url : https://murtaza-surveyapp.herokuapp.com/
 
 Prerequistes:
