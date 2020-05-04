@@ -16,6 +16,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("root")
 );
-console.log("The app is in:", process.env.NODE_ENV);
-
-console.log(process.env.REACT_APP_STRIPE_KEY);

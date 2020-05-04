@@ -31,6 +31,7 @@
     "passport-google-oauth20": "^2.0.0",
     "path-parser": "^6.1.0",
     "react-bootstrap": "^1.0.0",
+    "react-html-parser": "^2.0.2",
     "redux-form": "^8.3.3",
     "sendgrid": "^5.2.3",
     "stripe": "^8.38.0"

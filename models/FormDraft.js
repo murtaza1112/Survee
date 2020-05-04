@@ -6,6 +6,8 @@ const formDraftSchema = new Schema({
     type: String,
   },
   form: { type: String },
+  dateCreated: Date,
+  lastEdited: Date,
 });
 
 module.exports = formDraftSchema;

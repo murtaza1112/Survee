@@ -13,6 +13,8 @@ import Iconbar from "./Iconbar";
 import { Container } from "react-bootstrap";
 import FormBuilder from "./formBuilder/FormBuilder";
 import FormDisplay from "./formBuilder/FormDisplay";
+import SingleFormDisplay from "./formBuilder/SingleFormDisplay";
+import FormEdit from "./formBuilder/FormEdit";
 class App extends React.Component {
   componentDidMount() {
     this.props.fetchUser();
@@ -31,6 +33,8 @@ class App extends React.Component {
             <Route exact path="/surveys/new" component={surveyNew} />
             <Route exact path="/forms/create" component={FormBuilder} />
             <Route exact path="/forms" component={FormDisplay} />
+            <Route exact path="/forms/edit" component={FormEdit} />
+            <Route exact path="/forms/view/:id" component={SingleFormDisplay} />
           </div>
 
           <div className="site-footer">

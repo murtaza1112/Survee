@@ -26,8 +26,21 @@ export const fetchSurveys = () => async (dispatch) => {
   dispatch({ type: FETCH_SURVEYS, payload: res.data });
 };
 
-export const submitDraft = (draft) => async (dispatch) => {
+export const submitDraft = (draft, history) => async (dispatch) => {
   const res = await axios.post("/api/forms/submit", draft);
+  history.push("/forms");
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const updateDraft = (draft, history) => async (dispatch) => {
+  const res = await axios.post("/api/forms/update", draft);
+  history.push("/forms");
+  dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const deleteDraft = (draft) => async (dispatch) => {
+  console.log(draft);
+  const res = await axios.post("/api/forms/delete", draft);
   console.log(res);
   dispatch({ type: FETCH_USER, payload: res.data });
 };
