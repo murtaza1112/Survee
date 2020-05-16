@@ -5,6 +5,8 @@ import _ from "lodash";
 import validateEmails from "../../utils/validateEmail";
 import formFields from "./formFields";
 import { Form, Button } from "react-bootstrap";
+import formSelect from "./formSelect";
+
 class surveyForm extends React.Component {
   renderFields() {
     return _.map(formFields, ({ label, name }) => {
@@ -19,6 +21,12 @@ class surveyForm extends React.Component {
       );
     });
   }
+  renderOptions() {
+    if (!this.props.auth) return <div>Loading..</div>;
+    return this.props.auth.formDrafts.map((element) => {
+      return <option value={element.name}>{element.name}</option>;
+    });
+  }
   render() {
     return (
       <Form
@@ -26,6 +34,8 @@ class surveyForm extends React.Component {
         style={{ paddingTop: "20px" }}
       >
         {this.renderFields()}
+
+        <Field name="form" component={formSelect} key="form"></Field>
 
         <Button variant="outline-danger" href="/surveys">
           Cancel
@@ -46,11 +56,12 @@ function validate(values) {
   const errors = {};
 
   errors.recipients = validateEmails(values.recipients || " ");
-  console.log(errors);
+  // console.log(errors);
   _.each(formFields, ({ name }) => {
+    console.log(name);
     if (!values[name]) errors[name] = "Please provide a value";
   });
-
+  if (!values.form) errors.form = "Please provide a valid form.";
   return errors;
 }
 

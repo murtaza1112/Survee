@@ -14,7 +14,7 @@
   position: relative;
   width: 100%;
   border-bottom: 1px solid #cccccc;
-  border-top: 1px solid #cccccc;
+  border-top: 1px solid rgb(83, 83, 87);
   margin-top: 20px;
 }
 .footer p {
@@ -105,4 +105,5 @@
 
 .center {
   text-align: center;
+  padding-top: 20px;
 }

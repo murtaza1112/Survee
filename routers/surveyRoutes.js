@@ -8,16 +8,44 @@ const Survey = require("../models/Survey");
 const surveyTemplate = require("../services/emailTemplates/surveyTemplate");
 const Mailer = require("../services/Mailer");
 const keys = require("../config/keys");
-
+const Recipient = require("../models/Recipient");
 module.exports = (app) => {
   app.get("/api/surveys", requireLogin, async (req, res) => {
-    const surveys = await Survey.find({ _user: req.user.id }).select({
-      recipients: false,
-    });
+    const surveys = await Survey.find({ _user: req.user.id });
     //no need to get recipients therefore select addded to not get recipients
+    console.log(surveys);
     res.send(surveys);
   });
 
+  app.get("/api/surveys/:id", requireLogin, async (req, res) => {
+    console.log(req.params.id);
+    const survey = await Survey.findById(req.params.id);
+    console.log(survey);
+    res.send(survey);
+  });
+
+  app.post("/api/surveys/:id", requireLogin, async (req, res) => {
+    // console.log(req.params.id);
+    const survey = await Survey.findById(req.params.id);
+    // const form = JSON.parse(req.body.userData);
+    const userData = req.body;
+    // console.log(req.body);
+    const values = userData.map(({ userData, type, name }) => {
+      var obj = { type };
+      if (userData) obj.userData = userData;
+      if (name) obj.name = name;
+      return obj;
+    });
+    const jsonValues = JSON.stringify(values);
+    //console.log(survey);
+    survey.recipients.push({
+      responded: jsonValues,
+      dateSubmitted: Date.now(),
+    });
+    const newSurvey = await survey.save();
+    console.log(newSurvey);
+    res.send(newSurvey);
+  });
   app.get("/api/surveys/:surveyId/:choice", (req, res) => {
     res.send("Thanks for the vote.");
   });
@@ -55,24 +83,30 @@ module.exports = (app) => {
   });
 
   app.post("/api/surveys", requireLogin, requireCredits, async (req, res) => {
-    const { title, subject, body, recipients } = req.body;
+    const { title, subject, body, recipients, form } = req.body;
 
+    const inputForm = req.user.formDrafts.find((elem) => elem.name === form);
+    const recipientsArray = recipients
+      .split(",")
+      .map((email) => ({ email: email.trim() }));
+    // console.log(inputForm);
     const survey = new Survey({
       title,
       subject,
       body,
-      recipients: recipients
-        .split(",")
-        .map((email) => ({ email: email.trim() })),
+      draft: {
+        form: inputForm.form,
+        name: inputForm.name,
+      },
       _user: req.user.id,
       dateSent: Date.now(),
     });
-
+    // console.log(survey);
     // Great place to send an email!
-    const mailer = new Mailer(survey, surveyTemplate(survey));
+    const mailer = new Mailer(survey, recipientsArray, surveyTemplate(survey));
 
     try {
-      await mailer.send();
+      // await mailer.send();
       await survey.save();
       req.user.credits -= 1;
       const user = await req.user.save();

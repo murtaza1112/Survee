@@ -1,11 +1,18 @@
 import _ from "lodash";
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import $ from "jquery";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import formFields from "./formFields";
 import "./SurveyFormReview.css";
 import * as actions from "../../actions";
 import { Button, Spinner, Modal } from "react-bootstrap";
+window.jQuery = $;
+window.$ = $;
+
+require("jquery-ui-sortable");
+require("formBuilder");
+require("formBuilder/dist/form-render.min.js");
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -37,12 +44,39 @@ function MyVerticallyCenteredModal(props) {
   );
 }
 
-const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
+const SurveyFormReview = ({
+  onCancel,
+  formValues,
+  submitSurvey,
+  history,
+  auth,
+}) => {
+  const refInput = useRef();
   const [modalShow, setModalShow] = React.useState(false);
+  console.log(formValues);
+
+  useEffect(() => {
+    const { current } = refInput;
+    if (!auth) {
+      $(current).append("<div>Loading...</div>");
+    } else {
+      console.log(auth.formDrafts);
+      const match = auth.formDrafts.find((elem) => {
+        console.log(elem.name);
+        return elem.name === formValues.form;
+      });
+      console.log(match);
+      if (match) $(current).formRender({ formData: match.form });
+    }
+  });
   const reviewFields = _.map(formFields, ({ name, label }) => {
     return (
       <div key={name}>
-        <label>{label}</label>
+        <label>
+          <b>
+            <i>{label}</i>
+          </b>
+        </label>
         <div>{formValues[name]}</div>
         <hr />
       </div>
@@ -53,6 +87,15 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
     <div>
       <h1>Confirm Entries</h1>
       {reviewFields}
+
+      <div>
+        <label>
+          <b>
+            <i>Form</i>
+          </b>
+        </label>
+        <div className="form" ref={refInput}></div>
+      </div>
       <Button variant="warning" onClick={onCancel}>
         Back
       </Button>
@@ -78,7 +121,8 @@ const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
 };
 
 function mapStateToProps(state) {
-  return { formValues: state.form.surveyForm.values };
+  console.log(state);
+  return { formValues: state.form.surveyForm.values, auth: state.auth };
 }
 
 export default connect(mapStateToProps, actions)(withRouter(SurveyFormReview));

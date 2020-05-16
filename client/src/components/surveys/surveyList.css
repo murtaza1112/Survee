@@ -1,0 +1,18 @@
+.card-style {
+  width: 300px;
+  box-shadow: 1px 1px 2px black;
+  padding: 2px;
+}
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.button-style {
+  margin-top: 6px;
+}
+hr {
+  height: 1px;
+  background-color: grey;
+  margin-left: 12px;
+}

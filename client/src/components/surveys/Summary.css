@@ -1,0 +1,28 @@
+.formDisplay {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.cen {
+  text-align: center;
+}
+
+.nav-tabs > li {
+  float: none;
+  display: inline-block;
+  zoom: 1;
+}
+
+.nav-tabs {
+  text-align: center;
+}
+.date-display {
+  background-color: #6c757d;
+  color: white;
+  margin: 3px;
+  border-radius: 5px;
+}
+.color-display {
+}

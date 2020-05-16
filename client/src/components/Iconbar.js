@@ -11,7 +11,7 @@ import {
 function IconBar() {
   return (
     <div className="icon-bar">
-      <a href="#" className="facebook">
+      {/* <a href="#" className="facebook">
         <FontAwesomeIcon icon={faFacebook} transform="grow-30" />
       </a>
       <a href="#" className="instagram ">
@@ -22,7 +22,7 @@ function IconBar() {
       </a>
       <a href="#" className="github">
         <FontAwesomeIcon icon={faGithub} transform="grow-30" />
-      </a>
+      </a> */}
     </div>
   );
 }

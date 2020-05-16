@@ -7,10 +7,13 @@ const surveySchema = new Schema({
   body: String,
   subject: String,
   recipients: [recipientSchema],
-  yes: { type: Number, default: 0 },
-  no: { type: Number, default: 0 },
   _user: { type: Schema.Types.ObjectId, ref: "users" },
-  draft: { formDraftSchema },
+  draft: {
+    name: {
+      type: String,
+    },
+    form: { type: String },
+  },
   dateSent: Date,
   lastResponded: Date,
   //a user reference , relationship

@@ -44,13 +44,13 @@ class FormEdit extends Component {
   }
   validate(obj) {
     const form = JSON.parse(obj.form);
-    var buttons = 0;
+    // var buttons = 0;
     var errors = [];
-    form.forEach((element) => {
-      if (element.type === "button") buttons++;
-    });
-    if (buttons != 1)
-      errors.push("Form must contain only a single button.(For submission)");
+    // form.forEach((element) => {
+    //   if (element.type === "button") buttons++;
+    // });
+    //  if (buttons !== 1)
+    //    errors.push("Form must contain only a single button.(For submission)");
 
     return errors;
   }

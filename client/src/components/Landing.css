@@ -1,0 +1,78 @@
+.pimg1,
+.pimg2,
+.pimg3 {
+  position: relative;
+  opacity: 0.9;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  /*
+      fixed = parallax
+      scroll = normal
+    */
+  background-attachment: fixed;
+}
+
+.pimg2 {
+  background-image: url("../img/image4.jpg");
+  min-height: 400px;
+}
+
+.pimg3 {
+  background-image: url("../img/image3.jpg");
+  min-height: 400px;
+}
+
+.section {
+  text-align: center;
+  padding: 50px 80px;
+}
+
+.section-light {
+  background-color: #f4f4f4;
+  color: white;
+}
+
+.section-dark {
+  background-color: transparent;
+  color: #343a40;
+}
+
+.ptext {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+  font-size: 27px;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
+
+.ptext .border {
+  background-color: #111;
+  color: #fff;
+  padding: 10px;
+  border: none !important;
+}
+
+.ptext .border.trans {
+  background-color: transparent;
+}
+.space {
+  margin: 15px;
+}
+@media (max-width: 568px) {
+  .pimg1,
+  .pimg2,
+  .pimg3 {
+    background-attachment: scroll;
+  }
+}
+li {
+  padding: 5px;
+}
+.lists {
+  padding-top: 5px;
+}

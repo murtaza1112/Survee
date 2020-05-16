@@ -33,7 +33,7 @@ class FormBuilder extends Component {
   options = {
     formData,
     scrollToFieldOnAdd: true,
-    disableFields: ["autocomplete", "file", "paragraph", "hidden"],
+    disableFields: ["autocomplete", "file", "paragraph", "hidden", "button"],
     onSave: (evt, formData) => {
       toggleEdit(false);
       this.setState({ form: formData });
@@ -54,14 +54,43 @@ class FormBuilder extends Component {
   };
   validate(obj) {
     const form = JSON.parse(obj.form);
-    var buttons = 0;
+    // var buttons = 0;
     var errors = [];
-    form.forEach((element) => {
-      if (element.type === "button") buttons++;
-    });
-    if (buttons != 1)
-      errors.push("Form must contain only a single button.(For submission)");
+    // form.forEach((element) => {
+    //   if (element.type === "button") buttons++;
+    // });
+    // if (buttons !== 1)
+    //   errors.push("Form must contain only a single button.(For submission)");
 
+    if (form.length === 0) errors.push("The submitted form is empty.");
+    else {
+      form.forEach((element) => {
+        console.log(element.label);
+        if (!element.label || element.label.trim() === "")
+          errors.push(`${element.type}:Please provide element label.`);
+        if (element.values) {
+          const { values } = element;
+          let map = {};
+
+          for (let i = 0; i < values.length; i++) {
+            if (!values[i].label || values[i].label.trim() === "") {
+              errors.push(`${element.type}:Please provide option label.`);
+              break;
+            }
+
+            if (map[values[i].label]) {
+              errors.push(
+                `${values[i].label}:${element.type} options must be unique.`
+              );
+              break;
+            }
+            map[values[i].label] = true;
+            values[i].value = `option-${i + 1}`;
+          }
+          element.values = [...values];
+        }
+      });
+    }
     if (obj.name) {
       const result = this.props.auth.formDrafts.filter(
         (element) => element.name === obj.name
@@ -71,7 +100,8 @@ class FormBuilder extends Component {
         errors.push("Form name must be unique.");
       }
     } else errors.push("Please specify form name.");
-    return errors;
+
+    return { errors, formString: JSON.stringify(form) };
   }
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -82,7 +112,9 @@ class FormBuilder extends Component {
     const { form, value } = this.state;
     var obj = { form, name: value };
     console.log(obj);
-    const errors = this.validate(obj);
+
+    const { errors, formString } = this.validate(obj);
+
     $(this.errors.current).empty();
     if (errors.length) {
       const renderErrors = errors.map((element) => `<li>${element}</li>`);
@@ -95,6 +127,9 @@ class FormBuilder extends Component {
       console.log("Errors exist:", errors);
     } else {
       console.log("No errors");
+      obj.form = formString;
+      console.log(form);
+      console.log(obj.form);
       this.props.submitDraft(obj, this.props.history);
     }
   }

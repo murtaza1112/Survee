@@ -1,12 +1,10 @@
 import $ from "jquery";
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { Card, Button, Modal, Container, Alert } from "react-bootstrap";
 import "./FormDisplay.css";
 import * as actions from "../../actions";
 import FormElement from "./FormElement";
-
+import { Row } from "react-bootstrap";
 window.jQuery = $;
 window.$ = $;
 
@@ -25,7 +23,11 @@ function FormDisplay(props) {
   if (!props.auth) return <div>Loading..</div>;
   const draftSend = (draft) => props.deleteDraft(draft);
 
-  return <div>{renderList(props.auth.formDrafts, draftSend)}</div>;
+  return (
+    <div>
+      <Row>{renderList(props.auth.formDrafts, draftSend)}</Row>
+    </div>
+  );
 }
 const mapStateToProps = (state) => {
   console.log(state);
