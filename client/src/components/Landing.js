@@ -45,11 +45,6 @@ class Landing extends React.Component {
           </div>
         </div>
 
-        {/* <div class="pimg1">
-          <div class="ptext">
-            <span class="border">Traversy Media</span>
-          </div>
-        </div> */}
       </div>
     );
   }

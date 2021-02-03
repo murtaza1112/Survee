@@ -2,6 +2,8 @@ import React, { createRef } from "react";
 import $ from "jquery";
 import { Container, Button, Form, Row } from "react-bootstrap";
 import "./Responses.css";
+import ReactDOM from "react-dom";
+
 window.jQuery = $;
 window.$ = $;
 
@@ -31,8 +33,8 @@ class Responses extends React.Component {
 
     const form = JSON.parse(survey.draft.form);
 
-    console.log(this.state.current);
-    console.log(survey.recipients[this.state.current - 1]);
+    // console.log(this.state.current);
+    // console.log(survey.recipients[this.state.current - 1]);
 
     if (!this.state.current)
       var recipients = JSON.parse(survey.recipients[0].responded);
@@ -40,19 +42,23 @@ class Responses extends React.Component {
       var recipients = JSON.parse(
         survey.recipients[this.state.current - 1].responded
       );
-
-    const formData = form.map((element, index) => {
+    // console.log(form);
+    // console.log(recipients);
+    var formData = form.map((element, index) => {
       return { ...element, userData: recipients[index].userData };
     });
 
-    // console.log(formData);
-    // console.log(form);
-    // console.log(recipients);
-    $(this.formDisplay.current).formRender({
-      formData,
-    });
-    // console.log(survey.recipients[this.state.current - 1].dateSubmitted);
-
+    $(this.formDisplay.current).formRender({ formData });
+    $(this.formDisplay.current).formRender({ formData });
+    const node = ReactDOM.findDOMNode(this);
+    if (node) {
+      const textAreas = node.getElementsByTagName("textarea");
+      for (const textarea of textAreas) {
+        const cur = textarea.getAttribute("user-data");
+        textarea.value = cur;
+      }
+    }
+    
     return (
       <Container>
         <div>
@@ -107,7 +113,7 @@ class Responses extends React.Component {
               </p>
             </div>
           </div>
-          <div
+          <form
             className="formDisplay"
             className="display"
             ref={this.formDisplay}
@@ -119,9 +125,11 @@ class Responses extends React.Component {
 
   render() {
     const survey = this.props.surveyObj;
+    
     return (
       <div>
         <br />
+        {/* <form className="formDisplay" ref={this.formDisplay} /> */}
         {this.renderResponses(survey)}
       </div>
     );

@@ -27,6 +27,7 @@ module.exports = (app) => {
     const user = await req.user.save();
     res.send(user);
   });
+
   app.post("/api/forms/delete", requireLogin, async (req, res) => {
     console.log(req.body);
     var index = req.user.formDrafts.findIndex(

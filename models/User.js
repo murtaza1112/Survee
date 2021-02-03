@@ -4,6 +4,8 @@ const formDraftSchema = require("./FormDraft");
 
 const UserSchema = new Schema({
   googleId: String,
+  name : String,
+  
   credits: {
     type: Number,
     default: 0,

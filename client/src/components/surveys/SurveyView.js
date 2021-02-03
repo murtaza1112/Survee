@@ -19,7 +19,7 @@ class SurveyView extends React.Component {
     console.log(res);
     this.setState({ survey: res.data });
   }
-
+  
   render() {
     const { survey } = this.state;
     console.log(survey);

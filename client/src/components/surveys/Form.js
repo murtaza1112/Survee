@@ -43,9 +43,9 @@ class Form extends React.Component {
 
   render() {
     return (
-      <div className="display" ref={this.fb}>
-        Loading Form...
-      </div>
+        <div className="display" ref={this.fb}>
+          Loading Form...
+        </div>
     );
   }
 }

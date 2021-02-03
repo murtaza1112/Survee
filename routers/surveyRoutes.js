@@ -9,6 +9,7 @@ const surveyTemplate = require("../services/emailTemplates/surveyTemplate");
 const Mailer = require("../services/Mailer");
 const keys = require("../config/keys");
 const Recipient = require("../models/Recipient");
+
 module.exports = (app) => {
   app.get("/api/surveys", requireLogin, async (req, res) => {
     const surveys = await Survey.find({ _user: req.user.id });

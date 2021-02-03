@@ -17,23 +17,21 @@ class SingleFormDisplay extends React.Component {
     super(props);
     this.fb = createRef();
   }
-
-  componentDidUpdate() {
+  componentDidMount() {
     const id = this.props.location.pathname.slice(12);
-    if (!this.props.auth) {
-      return <div>Loading..</div>;
-    }
     const draft = this.props.auth.formDrafts.find((form) => form._id === id);
+    console.log(draft);
     if (draft) {
-      var formData = draft.form;
-      this.state.form = draft;
-      $(this.fb.current).formRender({ formData });
+      $(this.fb.current).formRender({ formData: draft.form });
     } else {
       $(this.fb.current).append("<div>Sorry This form dosent exist .</div>");
     }
   }
-
   render() {
+    console.log("Form");
+    if (!this.props.auth) {
+      return <div>Loading..</div>;
+    }
     return <div className="display" ref={this.fb} />;
   }
 }

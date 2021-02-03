@@ -38,12 +38,12 @@ passport.use(
       //whenever the callback is called the flow of program redirects here
       console.log("profile:", profile);
       const existingUser = await User.findOne({ googleId: profile.id });
-
+        
       if (existingUser) {
         //no error
         return done(null, existingUser);
       }
-
+      
       const user = new User({ googleId: profile.id });
       await user.save();
       done(null, user);

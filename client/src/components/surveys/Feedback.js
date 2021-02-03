@@ -18,11 +18,11 @@ class Feedback extends React.Component {
     this.errors = createRef();
   }
 
-  async componentDidUpdate() {
+  async componentDidMount() {
     const id = this.props.location.pathname.slice(18);
     // console.log(id);
     const res = await axios.get(`/api/surveys/${id}`);
-    // console.log(res.data);
+    console.log(res.data);
     if (!this.props.auth) {
       return;
     }
@@ -87,6 +87,7 @@ class Feedback extends React.Component {
     const exist = renderError.filter((element) => element);
     // console.log(exist);
     $(this.errors.current).empty();
+    console.log(renderError);
     if (exist.length > 0) {
       //   console.log("Errors exist .");
       var finalRender = "";
@@ -104,9 +105,11 @@ class Feedback extends React.Component {
       await axios.post(`/api/surveys/${id}`, userData);
 
       window.location.href = "/surveys/thankyou";
+      // console.log("saved")
     }
   }
   render() {
+    // console.log(this.state.errors)
     return (
       <div>
         <Alert variant="danger">

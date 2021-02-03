@@ -29,9 +29,11 @@ app.use(
     keys: [keys.cookieKey],
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 //end of middlewares
+
 authRoutes(app);
 billingRoutes(app);
 surveyRoutes(app);
