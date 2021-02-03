@@ -20,13 +20,12 @@ class Feedback extends React.Component {
 
   async componentDidMount() {
     const id = this.props.location.pathname.slice(18);
-    // console.log(id);
+    console.log(id);
     const res = await axios.get(`/api/surveys/${id}`);
     console.log(res.data);
     if (!this.props.auth) {
       return;
     }
-
     const draft = res.data.draft;
     if (draft) {
       var formData = draft.form;
