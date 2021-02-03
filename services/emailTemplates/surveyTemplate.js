@@ -9,7 +9,7 @@ module.exports = (survey) => {
           <p>${survey.body}</p>
           <div>
           <p>Please click here to submit Feedback:
-            <a href="${keys.redirectDomain}/surveys/feedback/${survey.id}">Submit Feedback</a>
+            <a href="${keys.redirectDomain}surveys/feedback/${survey.id}">Submit Feedback</a>
             </p>
           </div>
         </div>
