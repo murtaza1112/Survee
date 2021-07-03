@@ -4,7 +4,7 @@ An application to send surveys to different email ids by allowing user to provid
 Implemented using react /redux.
 Tech Stack:MERN with Redux for state management.
 
-To view formBuilder part : naviagte to /forms/create
+To view FormBuilder part : naviagte to /forms/create
 heroku url : https://murtaza-surveyapp.herokuapp.com/
 
 Prerequistes:
@@ -73,7 +73,7 @@ Values for each of the above key value pairs :
 
 1.Get google api keys by logging in the google developer console.
 
-2.Get monoURI using online mongodb.
+2.Get MongoURI using online mongodb.
 
 3.Stripe keys will be obtainable by creating an account in official stripe website.
 
